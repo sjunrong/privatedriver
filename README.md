@@ -6,6 +6,6 @@ privatedriver is the first model for identifying subtype-specific driver genes t
    b.load('data/diffmirna_diffmrna.rdata'): the mRNAs which have been reglated by miRNAs.
    c.load('networks/Maximal_FI.rdata'):the generated networks with three sources.
    run the diffusion_combine.R
-3. Collaborative training with simulated organizations
+2. Collaborative training with simulated organizations
 When generate the gene_matrix after diffusion. the federated learning can be empolyed to train the non-negative matrix factorization model in a collaborative manner.
 The federated learning utilized the framework of Fate 1.40 which can be downloaded from online source (https://webank-ai-1251170195.cos.ap-guangzhou.myqcloud.com/docker_standalone-fate-1.4.0.tar.gz). The privatedriver deployed on a standalone mode by using docker.
