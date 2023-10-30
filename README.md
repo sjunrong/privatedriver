@@ -8,15 +8,15 @@ privatedriver is the first model for identifying subtype-specific driver genes t
    Running the diffusion_combine.R
 Output data：
    gene_matrix:row is patient, column is genes, each entry is the diffusion score of patient i to gene j.
-3. After generating the gene_matrix through the diffusion process, the non-negative matrix factorization model is trained collaboratively using federated learning. This federated learning approach leverages the Fate 1.40 framework, which can be downloaded from an online source (https://webank-ai-1251170195.cos.ap-guangzhou.myqcloud.com/docker_standalone-fate-1.4.0.tar.gz). The privatedriver is deployed in standalone mode via Docker. Fate 1.40 supports six classical recommendation algorithms, including the matrix factorization method utilized in this study. We enhanced the original matrix factorization code by incorporating non-negative constraints and adjusting parameters in the configuration file, dsl. The specific changes are outlined below:
+2. After generating the gene_matrix through the diffusion process, the non-negative matrix factorization model is trained collaboratively using federated learning. This federated learning approach leverages the Fate 1.40 framework, which can be downloaded from an online source (https://webank-ai-1251170195.cos.ap-guangzhou.myqcloud.com/docker_standalone-fate-1.4.0.tar.gz). The privatedriver is deployed in standalone mode via Docker. Fate 1.40 supports six classical recommendation algorithms, including the matrix factorization method utilized in this study. We enhanced the original matrix factorization code by incorporating non-negative constraints and adjusting parameters in the configuration file, dsl. The specific changes are outlined below:
 
-1.Added the parameter "embeddings_constraint=non_neg()" in the user and item Embedding function() of the backend.py file to ensure non-negative training.
+ a.Added the parameter "embeddings_constraint=non_neg()" in the user and item Embedding function() of the backend.py file to ensure non-negative training.
 
-2.Configured the test_hetero_fm_train_job_conf file with multiple different guest IDs.
+ b.Configured the test_hetero_fm_train_job_conf file with multiple different guest IDs.
 
-3.Adjusted the parameter "cluster number of nsplit" based on the optimal cophenetic distance.
+ c.Adjusted the parameter "cluster number of nsplit" based on the optimal cophenetic distance.
 
-4.Set the parameters as follows:
+ d.Set the parameters as follows:
      "max_iter" to 1000
      "converge_func" to "diff"
      "batch_size" to "all"
